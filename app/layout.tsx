@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Provider from './_components/Provider'
+import Link from 'next/link'
+import SearchForm from './_components/SearchForm'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,8 +18,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang='en'>
+      <body className={`${inter.className} max-w-md mx-auto p-4`}>
+        <Provider>
+          <header>
+            <Link href='/'>
+              <p className='text-center font-bold my-4 text-xl'>Marvel</p>
+            </Link>
+            <SearchForm />
+          </header>
+          {children}
+        </Provider>
+      </body>
     </html>
   )
 }
