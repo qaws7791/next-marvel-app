@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { MarvelImageVariants } from '@/constants/marvel'
 import LoadingSpinner from '@/components/common/LoadingSpinner'
 import { Button } from '@/components/ui/button'
-import { useSeriesByIdInfQuery } from '@/queries/series'
+import Link from 'next/link'
+import { useComicsByIdInfQuery } from '@/queries/comics'
+import { Badge } from '@/components/ui/badge'
 
 type Props = {
   id: string
@@ -12,7 +14,7 @@ type Props = {
 
 const ComicsList = ({ id }: Props) => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useSeriesByIdInfQuery({ id })
+    useComicsByIdInfQuery({ id })
 
   if (isLoading) return <LoadingSpinner />
 
@@ -28,16 +30,21 @@ const ComicsList = ({ id }: Props) => {
           <Fragment key={i}>
             {group.results.map((result) => (
               <div key={result.id}>
-                <div className='overflow-hidden rounded-md border border-slate-300'>
-                  <Image
-                    alt='thumbnail'
-                    width={200}
-                    height={225}
-                    className='w-full hover:scale-110 ease-out duration-300'
-                    src={`${result.thumbnail.path}/${MarvelImageVariants.portraitUncanny}.${result.thumbnail.extension}`}
-                  />
-                </div>
-                <p className='font-semibold my-2 px-2'>{result.title}</p>
+                <Link href={`/comics/${result.id}`} className='mb-2 flex'>
+                  <div className='overflow-hidden rounded-md border border-slate-300'>
+                    <Image
+                      alt='thumbnail'
+                      width={200}
+                      height={225}
+                      className='w-full hover:scale-110 ease-out duration-300'
+                      src={`${result.thumbnail.path}/${MarvelImageVariants.portraitUncanny}.${result.thumbnail.extension}`}
+                    />
+                  </div>
+                </Link>
+                <Badge>{result.format}</Badge>
+                <Link href={`/comics/${result.id}`}>
+                  <p className='font-semibold my-2'>{result.title}</p>
+                </Link>
               </div>
             ))}
           </Fragment>

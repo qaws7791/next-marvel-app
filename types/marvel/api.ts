@@ -216,3 +216,40 @@ type StoriesByCharacterId = {
     }[]
   } & CommonData
 } & CommonResponse
+
+// 7. comics by comic id
+type ComicsById = {
+  data: {
+    results: {
+      id: number
+      digitalId: number
+      title: string
+      issueNumber: number
+      variantDescription: string
+      description: string
+      modified: Date
+      isbn: string
+      upc: string
+      diamondCode: string
+      ean: string
+      issn: string
+      format: string
+      pageCount: number
+      textObjects: { type: string; language: string; text: string }[]
+      resourceURI: string
+      urls: Url[]
+      series: { resourceURI: string; name: string }
+      variants: { resourceURI: string; name: string }[]
+      collections: { resourceURI: string; name: string }[]
+      collectedIssues: { resourceURI: string; name: string }[]
+      dates: { type: string; date: Date }[]
+      prices: { type: string; price: number }[]
+      thumbnail: Thumbnail
+      images: Image[]
+      creators: Creators
+      characters: Characters
+      stories: Stories
+      events: Events
+    }[]
+  } & CommonData
+} & CommonResponse

@@ -64,7 +64,7 @@ const CharacterDetail = async ({ params }: Props) => {
         <p>
           Modified:
           {character.modified
-            ? new Date(character.modified).toDateString()
+            ? new Date(character.modified).toLocaleString()
             : 'None'}
         </p>
       </div>
