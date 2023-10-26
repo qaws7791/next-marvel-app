@@ -43,3 +43,25 @@ export async function getCharactersByName(
     throw new Error('Error')
   }
 }
+
+export async function getCharactersBySeriesId(
+  seriesId: string,
+  { offset = 0, limit = 20 } = {}
+) {
+  try {
+    const res = await instance.get(`/series/${seriesId}/characters`, {
+      params: {
+        orderBy: ORDER_BY.CHARACTERS.name,
+        offset,
+        limit,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+    const data = res.data as CharactersBySeriesId
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}

@@ -1,8 +1,13 @@
 import { MarvelImageVariants } from '@/constants/marvel'
 
-export const getMarvelThumbnail = (thumbnail: Thumbnail | null) => {
+export const getMarvelThumbnail = (
+  thumbnail: Thumbnail | null,
+  imageVriants?: (typeof MarvelImageVariants)[keyof typeof MarvelImageVariants]
+) => {
   if (!thumbnail) {
     return '/image-placeholder.svg'
   }
-  return `${thumbnail.path}/${MarvelImageVariants.portraitUncanny}.${thumbnail.extension}`
+  return `${thumbnail.path}/${
+    imageVriants || MarvelImageVariants.portraitUncanny
+  }.${thumbnail.extension}`
 }

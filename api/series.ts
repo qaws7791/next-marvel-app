@@ -22,3 +22,23 @@ export async function getSeriesByCharacterId(
     throw new Error('Error')
   }
 }
+
+export async function getSeriesById(seriesId: string) {
+  try {
+    const res = await instance.get(`/series/${seriesId}`)
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as SeriesById
+
+    if (data.data.results.length === 0) throw new Error('No data')
+
+    return {
+      ...data.data,
+      results: data.data.results[0],
+    }
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
