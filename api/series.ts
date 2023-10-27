@@ -14,7 +14,77 @@ export async function getSeriesByCharacterId(
 
     if (res.status !== 200) throw new Error('Error')
 
-    const data = res.data as SeriesByCharacterId
+    const data = res.data as SeriesResult
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getSeriesByEventId(
+  eventId: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get(`/events/${eventId}/series`, {
+      params: {
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as SeriesResult
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getSeriesByStoryId(
+  storyId: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get(`/stories/${storyId}/series`, {
+      params: {
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as SeriesResult
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getSeriesByTitle(
+  title: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get('/series', {
+      params: {
+        titleStartsWith: title,
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as SeriesResult
 
     return data.data
   } catch (error) {
@@ -29,7 +99,7 @@ export async function getSeriesById(seriesId: string) {
 
     if (res.status !== 200) throw new Error('Error')
 
-    const data = res.data as SeriesById
+    const data = res.data as SeriesResult
 
     if (data.data.results.length === 0) throw new Error('No data')
 

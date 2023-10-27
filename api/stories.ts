@@ -15,7 +15,76 @@ export async function getStoriesByCharacterId(
     })
 
     if (res.status !== 200) throw new Error('Error')
-    const data = res.data as StoriesByCharacterId
+    const data = res.data as StoriesResult
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getStoriesByComicId(
+  comicId: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get(`/comics/${comicId}/stories`, {
+      params: {
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as StoriesResult
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getStoriesByEventId(
+  eventId: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get(`/events/${eventId}/stories`, {
+      params: {
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as StoriesResult
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
+
+export async function getStoriesBySeriesId(
+  seriesId: string,
+  { limit = 20, offset = 0 } = {}
+) {
+  try {
+    const res = await instance.get(`/series/${seriesId}/stories`, {
+      params: {
+        limit,
+        offset,
+      },
+    })
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as StoriesResult
+
     return data.data
   } catch (error) {
     console.error(error)

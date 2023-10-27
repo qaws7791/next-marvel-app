@@ -72,8 +72,8 @@ type Characters = RelatedCommonData & {
   items: ItemsWithRole[]
 }
 
-// 1. characters by name
-type CharactersByName = {
+// 1. characters api result
+type CharactersResult = {
   data: {
     results: {
       id: number
@@ -91,27 +91,8 @@ type CharactersByName = {
   } & CommonData
 } & CommonResponse
 
-// 2. characters by character id
-type CharactersById = {
-  data: {
-    results: {
-      id: number
-      name: string
-      description: string
-      modified: Date
-      resourceURI: string
-      urls: Url[]
-      thumbnail: Thumbnail
-      comics: Comics
-      stories: Stories
-      events: Events
-      series: Series
-    }[]
-  } & CommonData
-} & CommonResponse
-
-// 3. comics by character id
-type ComicsByCharacterId = {
+// 2. comics api result
+type ComicsResult = {
   data: {
     results: {
       id: number
@@ -147,8 +128,8 @@ type ComicsByCharacterId = {
   } & CommonData
 } & CommonResponse
 
-// 4. events by character id
-type EventsByCharacterId = {
+// 3. events api result
+type EventsResult = {
   data: {
     results: {
       id: number
@@ -171,8 +152,8 @@ type EventsByCharacterId = {
   } & CommonData
 } & CommonResponse
 
-// 5. series by character id
-type SeriesByCharacterId = {
+// 4. series api result
+type SeriesResult = {
   data: {
     results: {
       id: number
@@ -196,8 +177,8 @@ type SeriesByCharacterId = {
   } & CommonData
 } & CommonResponse
 
-// 6. stories by character id
-type StoriesByCharacterId = {
+// 5. stories api result
+type StoriesResult = {
   data: {
     results: {
       id: number
@@ -213,86 +194,6 @@ type StoriesByCharacterId = {
       characters: Characters
       creators: Creators
       originalissue: { resourceURI: string; name: string }
-    }[]
-  } & CommonData
-} & CommonResponse
-
-// 7. comics by comic id
-type ComicsById = {
-  data: {
-    results: {
-      id: number
-      digitalId: number
-      title: string
-      issueNumber: number
-      variantDescription: string
-      description: string
-      modified: Date
-      isbn: string
-      upc: string
-      diamondCode: string
-      ean: string
-      issn: string
-      format: string
-      pageCount: number
-      textObjects: { type: string; language: string; text: string }[]
-      resourceURI: string
-      urls: Url[]
-      series: { resourceURI: string; name: string }
-      variants: { resourceURI: string; name: string }[]
-      collections: { resourceURI: string; name: string }[]
-      collectedIssues: { resourceURI: string; name: string }[]
-      dates: { type: string; date: Date }[]
-      prices: { type: string; price: number }[]
-      thumbnail: Thumbnail
-      images: Image[]
-      creators: Creators
-      characters: Characters
-      stories: Stories
-      events: Events
-    }[]
-  } & CommonData
-} & CommonResponse
-
-// 8. series by series id
-type SeriesById = {
-  data: {
-    results: {
-      id: number
-      title: string
-      description: string
-      resourceURI: string
-      urls: { type: string; url: string }[]
-      startYear: number
-      endYear: number
-      rating: string
-      modified: Date
-      thumbnail: Thumbnail
-      comics: Comics
-      stories: Stories
-      events: Events
-      characters: Characters
-      creators: Creators
-      next: { resourceURI: string; name: string }
-      previous: { resourceURI: string; name: string }
-    }[]
-  } & CommonData
-} & CommonResponse
-
-type CharactersBySeriesId = {
-  data: {
-    results: {
-      id: number
-      name: string
-      description: string
-      modified: Date
-      resourceURI: string
-      urls: Url[]
-      thumbnail: Thumbnail
-      comics: Comics
-      stories: Stories
-      events: Events
-      series: Series
     }[]
   } & CommonData
 } & CommonResponse
