@@ -32,7 +32,10 @@ const StoriesList = ({ id }: Props) => {
             {group.results.map((result) => (
               <div key={result.id}>
                 <div className='overflow-hidden rounded-md flex flex-col my-2 gap-3'>
-                  <div className='flex gap-2 items-start'>
+                  <Link
+                    className='flex gap-2 items-start'
+                    href={`/stories/${result.id}`}
+                  >
                     <Image
                       alt='thumbnail'
                       width={48}
@@ -41,7 +44,7 @@ const StoriesList = ({ id }: Props) => {
                       src={getMarvelThumbnail(result.thumbnail)}
                     />
                     <p className='font-semibold px-2'>{result.title}</p>
-                  </div>
+                  </Link>
                   <div className='flex flex-wrap gap-1'>
                     {result.characters.items.map((item) => (
                       <Badge variant='outline' key={item.name}>

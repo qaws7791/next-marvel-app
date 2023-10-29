@@ -5,6 +5,7 @@ import { MarvelImageVariants } from '@/constants/marvel'
 import LoadingSpinner from '@/components/common/LoadingSpinner'
 import { Button } from '@/components/ui/button'
 import { useEventsByIdInfQuery } from '@/queries/events'
+import Link from 'next/link'
 
 type Props = {
   id: string
@@ -27,7 +28,7 @@ const EventsList = ({ id }: Props) => {
         {data.pages.map((group, i) => (
           <Fragment key={i}>
             {group.results.map((result) => (
-              <div key={result.id}>
+              <Link key={result.id} href={`/events/${result.id}`}>
                 <div className='overflow-hidden rounded-md border border-slate-300'>
                   <Image
                     alt='thumbnail'
@@ -38,7 +39,7 @@ const EventsList = ({ id }: Props) => {
                   />
                 </div>
                 <p className='font-semibold my-2 px-2'>{result.title}</p>
-              </div>
+              </Link>
             ))}
           </Fragment>
         ))}

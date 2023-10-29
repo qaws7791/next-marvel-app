@@ -36,7 +36,7 @@ const SearchForm = () => {
   })
 
   const onSubmit = (data: SearchFormSchema) => {
-    router.push(`/search/${data.search}`)
+    router.push(`/search?keyword=${data.search}&category=all`)
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

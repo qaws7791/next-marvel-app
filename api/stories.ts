@@ -91,3 +91,23 @@ export async function getStoriesBySeriesId(
     throw new Error('Error')
   }
 }
+
+export async function getStoriesById(storyId: string) {
+  try {
+    const res = await instance.get(`/stories/${storyId}`)
+
+    if (res.status !== 200) throw new Error('Error')
+
+    const data = res.data as StoriesResult
+
+    if (data.data.results.length === 0) throw new Error('No data')
+
+    return {
+      ...data.data,
+      results: data.data.results[0],
+    }
+  } catch (error) {
+    console.error(error)
+    throw new Error('Error')
+  }
+}
